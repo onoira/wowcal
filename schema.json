@@ -1,0 +1,122 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "title": "Calendar list",
+    "description": "A list of calendar systems",
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": [
+          {
+            "description": "A calendar system",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "info": {
+                "type": "object",
+                "properties": {
+                  "_succeededBy": {
+                    "description": "Reference to a succeeding calendar 'id' and the total year of succession excluding eras",
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ],
+                    "minItems": 2
+                  },
+                  "users": {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "initiator": {
+                    "description": "Whom introduced the calendar",
+                    "type": "string"
+                  },
+                  "namesake": {
+                    "description": "Whom or what the calendar is named after",
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "users"
+                ]
+              },
+              "referenceYear": {
+                "description": "The current total year excluding eras",
+                "type": "integer"
+              },
+              "eras": {
+                "description": "Define multiple affixes for different cutoff years",
+                "type": "array",
+                "items": [
+                  {
+                    "type": "object",
+                    "patternProperties": {
+                      "^[0-9]*$": {
+                        "$ref": "#/definitions/affixDef"
+                      }
+                    }
+                  }
+                ],
+                "minItems": 1
+              },
+              "affixPositive": {
+                "$ref": "#/definitions/affixDef"
+              },
+              "affixNegative": {
+                "$ref": "#/definitions/affixDef"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "info",
+              "referenceYear",
+              "affixPositive"
+            ]
+          }
+        ]
+      },
+      "_index": {
+        "description": "A list of all IDs",
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "definitions": {
+      "affixDef": {
+        "description": "A date affix consisting of [0] the full affix, and [1] an abbreviation or acronym",
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          }
+        ],
+        "minItems": 2
+      }
+    },
+    "required": [
+      "data",
+      "_index"
+    ]
+}
