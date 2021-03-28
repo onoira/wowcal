@@ -2,7 +2,7 @@
 
 Utility for catalogueing and comparing calendar systems in roleplay settings.
 
-Available calendars:
+Example calendars:
 
 - [onoira/calendars-wow](https://github.com/onoira/calendars-wow)
 
