@@ -27,6 +27,8 @@ If you would like to make your own calendars: refer to the [schema](schema.json)
     pip3 install -e ".[Validation]"
     validate.py path/to/file.yml
 
+You are also welcome to [start a discussion](https://github.com/onoira/wowcal/discussions).
+
 ## Known issues
 
 `wowcal` currently makes the assumption that all calendar years are equal length and does not support units shorter than a year.
